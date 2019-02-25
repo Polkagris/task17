@@ -3,7 +3,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Person {
+public class Mail {
     public static void insertMail(int person_ID, String mail_home, String mail_work) {
         String url = "jdbc:sqlite::resource:main.db";
         String sql = "INSERT INTO mail(person_ID,mail_home,mail_work) VALUES(?,?,?)";

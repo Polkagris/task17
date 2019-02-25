@@ -3,66 +3,64 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Phone {
-    public static void insertPhone(int person_ID, String phone_home, String phone_mobile, String phone_work) {
+public class Address {
+    public static void insertAddress(String streetName, int houseNumber, int postCode) {
         String url = "jdbc:sqlite::resource:main.db";
-        String sql = "INSERT INTO phone(person_ID,phone_home,phone_mobile,phone_work) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO address(streetName,houseNumber,postCode) VALUES(?,?,?)";
 
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, person_ID);
-            pstmt.setString(2, phone_home);
-            pstmt.setString(3, phone_mobile);
-            pstmt.setString(4, phone_work);
+            pstmt.setString(1, streetName);
+            pstmt.setInt(2, houseNumber);
+            pstmt.setInt(3, postCode);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public static void readPhone() {
+    public static void readAddress() {
         String url = "jdbc:sqlite::resource:main.db";
-        String sql = "SELECT person_ID, phone_home, phone_mobile, phone_work FROM phone ";
+        String sql = "SELECT streetName, houseNumber, postCode FROM address ";
 
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
 
             while (rs.next()) {
-                System.out.println(rs.getInt("person_ID") +  " " + rs.getString("phone_home") + " " + rs.getDouble("phone_mobile") + " " + rs.getDouble("phone_work"));
+                System.out.println(rs.getInt("streetName") +  " " + rs.getString("houseNumber") + " " + rs.getDouble("postCode"));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public static void updatePhone(int person_ID, String phone_home, String phone_mobile, String phone_work) {
+    public static void updateAddress(String streetName, int houseNumber, int postCode) {
         String url = "jdbc:sqlite::resource:main.db";
-        String sql = "UPDATE phone "
-                + " SET person_ID integer = ?, "
-                + " phone_home = ?, "
-                + " phone_mobile = ?, "
-                + " phone_work = ?";
+        String sql = "UPDATE address "
+                + " SET streetName = ?, "
+                + " houseNumber integer = ?, "
+                + " postCode integer = ?";
 
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, person_ID);
-            pstmt.setString(2, firstName);
-            pstmt.setString(3, lastName);
-            pstmt.setString(4, dob);
+            pstmt.setString(1, streetName);
+            pstmt.setInt(2, houseNumber);
+            pstmt.setInt(3, postCode);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public static void deletePhone() {
+    public static void deleteAddress() {
         String url = "jdbc:sqlite::resource:main.db";
-        String sql = "DELETE FROM phone WHERE person_ID = ?";
+        String sql = "DELETE FROM address WHERE steetName = ? AND houseNumber = ?";
 
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, person_ID);
+            pstmt.setString(1, streetName);
+            pstmt.setInt(2, houseNumber);
             pstmt.executeUpdate();
 
         } catch (SQLException e) {

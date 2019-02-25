@@ -96,7 +96,12 @@ public class Task17 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+<<<<<<< HEAD
+        System.out.println("Src to github please");
+        System.out.println("test-branch");
+=======
         createPersonTable();
+>>>>>>> origin
     }
 
 }

@@ -1,9 +1,12 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class CreateTables {
     public static void createPersonTable() {
-        // SQLite connection string
-        String url = "jdbc:sqlite:/main.db";
-
-        // SQL statement for creating a new table
+        String url = "jdbc:sqlite::resource:main.db";
+        /* Creates the person-table containing the person info */
         String sql = "CREATE TABLE IF NOT EXISTS person (\n"
                 + " id integer PRIMARY KEY, \n"
                 + " firstName text NOT NULL, \n"
@@ -13,7 +16,6 @@ public class CreateTables {
 
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement()) {
-            // create a new table
             stmt.execute(sql);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -21,10 +23,7 @@ public class CreateTables {
     }
 
     public static void createPhoneTable() {
-        // SQLite connection string
-        String url = "jdbc:sqlite:/main.db";
-
-        // SQL statement for creating a new table
+        String url = "jdbc:sqlite::resource:main.db";
         /* Creates the phone-table containing the phone numbers */
         String sql = "CREATE TABLE IF NOT EXISTS phone (\n"
                 + " id integer PRIMARY KEY, \n"
@@ -35,7 +34,6 @@ public class CreateTables {
 
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement()) {
-            // create a new table
             stmt.execute(sql);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -43,9 +41,7 @@ public class CreateTables {
     }
 
     public static void createMailTable() {
-        // SQLite connection string
-        String url = "jdbc:sqlite:/main.db";
-
+        String url = "jdbc:sqlite::resource:main.db";
         /* Creates the mail-table containing the email addresses */
         String sql = "CREATE TABLE IF NOT EXISTS mail (\n"
                 + " id integer PRIMARY KEY, \n"
@@ -55,7 +51,6 @@ public class CreateTables {
 
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement()) {
-            // create a new table
             stmt.execute(sql);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -63,9 +58,7 @@ public class CreateTables {
     }
 
     public static void createPersonTable() {
-        // SQLite connection string
-        String url = "jdbc:sqlite:/main.db";
-
+        String url = "jdbc:sqlite::resource:main.db";
         /* Creates the address-table containing the addresses */
         String sql = "CREATE TABLE IF NOT EXISTS address (\n"
                 + " id integer PRIMARY KEY, \n"   // WRONG
@@ -75,7 +68,6 @@ public class CreateTables {
 
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement()) {
-            // create a new table
             stmt.execute(sql);
         } catch (SQLException e) {
             System.out.println(e.getMessage());

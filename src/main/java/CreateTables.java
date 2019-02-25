@@ -1,7 +1,7 @@
 public class CreateTables {
     public static void createPersonTable() {
         // SQLite connection string
-        String url = "jdbc:sqlite:/Task17.sqlite";
+        String url = "jdbc:sqlite:/main.db";
 
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS person (\n"
@@ -22,7 +22,7 @@ public class CreateTables {
 
     public static void createPhoneTable() {
         // SQLite connection string
-        String url = "jdbc:sqlite:/Task17.sqlite";
+        String url = "jdbc:sqlite:/main.db";
 
         // SQL statement for creating a new table
         /* Creates the phone-table containing the phone numbers */
@@ -44,7 +44,7 @@ public class CreateTables {
 
     public static void createMailTable() {
         // SQLite connection string
-        String url = "jdbc:sqlite:/Task17.sqlite";
+        String url = "jdbc:sqlite:/main.db";
 
         /* Creates the mail-table containing the email addresses */
         String sql = "CREATE TABLE IF NOT EXISTS mail (\n"
@@ -64,7 +64,7 @@ public class CreateTables {
 
     public static void createPersonTable() {
         // SQLite connection string
-        String url = "jdbc:sqlite:/Task17.sqlite";
+        String url = "jdbc:sqlite:/main.db";
 
         /* Creates the address-table containing the addresses */
         String sql = "CREATE TABLE IF NOT EXISTS address (\n"

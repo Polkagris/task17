@@ -1,3 +1,8 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class CreateTables {
     public static void createPersonTable() {
         // SQLite connection string
@@ -62,7 +67,7 @@ public class CreateTables {
         }
     }
 
-    public static void createPersonTable() {
+    public static void createAddresTable() {
         // SQLite connection string
         String url = "jdbc:sqlite:/main.db";
 

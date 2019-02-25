@@ -1,13 +1,11 @@
-public class Person {
-    public static void insertPersonTable(int person_ID, String firstName, String lastName, String dob) {
-        // SQLite connection string
-        String url = "jdbc:sqlite::resource:main.db";
+import java.sql.*;
 
-        // SQL statement for creating a new table
+public class Person {
+    public static void insertPerson(int person_ID, String firstName, String lastName, String dob) {
+        String url = "jdbc:sqlite::resource:main.db";
         String sql = "INSERT INTO person(id,firstName,lastName,dob) VALUES(?,?,?,?)";
 
         try (Connection conn = this.connect();
-
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             pstmt.setString(2, firstName);
@@ -19,43 +17,51 @@ public class Person {
         }
     }
 
-    public static void updatePersonTable() {
-        // SQLite connection string
+    public static void readPerson() {
         String url = "jdbc:sqlite::resource:main.db";
+        String sql = "SELECT id, firstName, lastName, dob FROM person ";
 
-        // SQL statement for creating a new table
-        String sql = "CREATE TABLE IF NOT EXISTS person (\n"
-                + " id integer PRIMARY KEY, \n"
-                + " firstName text NOT NULL, \n"
-                + " lastName text NOT NULL, \n"
-                + " dob text NOT NULL \n"
-                + ");";
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
 
-        try (Connection conn = DriverManager.getConnection(url);
-             Statement stmt = conn.createStatement()) {
-            // create a new table
-            stmt.execute(sql);
+            while (rs.next()) {
+                System.out.println(rs.getInt("id") +  " " + rs.getString("firstName") + " " + rs.getDouble("lastName") + " " + rs.getDouble("dob"));
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public static void updatePersonTable() {
-        // SQLite connection string
+    public static void updatePerson(int person_ID, String firstName, String lastName, String dob) {
         String url = "jdbc:sqlite::resource:main.db";
+        String sql = "UPDATE person "
+                + " SET id integer = ?, "
+                + " firstName = ?, "
+                + " lastName = ?, "
+                + " dob = ?";
 
-        // SQL statement for creating a new table
-        String sql = "CREATE TABLE IF NOT EXISTS person (\n"
-                + " id integer PRIMARY KEY, \n"
-                + " firstName text NOT NULL, \n"
-                + " lastName text NOT NULL, \n"
-                + " dob text NOT NULL \n"
-                + ");";
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            pstmt.setString(2, firstName);
+            pstmt.setString(3, lastName);
+            pstmt.setString(4, dob);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
-        try (Connection conn = DriverManager.getConnection(url);
-             Statement stmt = conn.createStatement()) {
-            // create a new table
-            stmt.execute(sql);
+    public static void deletePerson() {
+        String url = "jdbc:sqlite::resource:main.db";
+        String sql = "DELETE FROM person WHERE person_ID = ?";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

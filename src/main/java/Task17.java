@@ -5,6 +5,7 @@ import java.sql.Statement;
 
 public class Task17 {
     public static void main(String[] args) {
+        createTables.createPersonTable();
     }
 
 }

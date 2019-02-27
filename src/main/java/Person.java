@@ -1,15 +1,16 @@
 import java.sql.*;
 
 public class Person {
-    public static void insertPerson(int person_ID, String firstName, String lastName, String dob) {
-        String sql = "INSERT INTO person(person_ID,firstName,lastName,dob) VALUES(?,?,?,?)";
+    public static void createPerson(int person_ID, String first_name, String last_name, String birth_date, String gender) {
+        String sql = "INSERT INTO person(person_ID,first_name,last_name,birth_date, gender) VALUES(?,?,?,?,?)";
 
         try (Connection conn = Database.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, person_ID);
-            pstmt.setString(2, firstName);
-            pstmt.setString(3, lastName);
-            pstmt.setString(4, dob);
+            pstmt.setString(2, first_name);
+            pstmt.setString(3, last_name);
+            pstmt.setString(4, birth_date);
+            pstmt.setString(5, gender);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -17,33 +18,35 @@ public class Person {
     }
 
     public static void readPerson() {
-        String sql = "SELECT person_ID, firstName, lastName, dob FROM person ";
+        String sql = "SELECT person_ID, first_name, last_name, birth_date, gender FROM person ";
 
         try (Connection conn = Database.connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
 
             while (rs.next()) {
-                System.out.println(rs.getInt("person_ID") +  " " + rs.getString("firstName") + " " + rs.getDouble("lastName") + " " + rs.getDouble("dob"));
+                System.out.println(rs.getInt("person_ID") +  " " + rs.getString("first_name") + " " + rs.getDouble("last_name") + " " + rs.getDouble("birth_date") + " " + rs.getDouble("gender"));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public static void updatePerson(int person_ID, String firstName, String lastName, String dob) {
+    public static void updatePerson(int person_ID, String first_name, String last_name, String birth_date, String gender) {
         String sql = "UPDATE person "
                 + " SET person_ID integer = ?, "
-                + " firstName = ?, "
-                + " lastName = ?, "
-                + " dob = ?";
+                + " first_name = ?, "
+                + " last_name = ?, "
+                + " birth_date = ?, "
+                + " gender = ?";
 
         try (Connection conn = Database.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, person_ID);
-            pstmt.setString(2, firstName);
-            pstmt.setString(3, lastName);
-            pstmt.setString(4, dob);
+            pstmt.setString(2, first_name);
+            pstmt.setString(3, last_name);
+            pstmt.setString(4, birth_date);
+            pstmt.setString(5, gender);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

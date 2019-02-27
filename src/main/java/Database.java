@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 public class Database {
 
-    static final String url = "jdbc:sqlite::resource:main.db";
+    static final String url = "jdbc:sqlite:src/resources/main.db";
 
     public static Connection connect() {
         Connection conn = null;

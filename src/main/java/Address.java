@@ -1,7 +1,7 @@
 import java.sql.*;
 
 public class Address {
-    public static void insertAddress(String streetName, int houseNumber, int postCode) {
+    public static void createAddress(String streetName, int houseNumber, int postCode) {
         String sql = "INSERT INTO address(streetName,houseNumber,postCode) VALUES(?,?,?)";
 
         try (Connection conn = Database.connect();

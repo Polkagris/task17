@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="gradle-wrapper">
+  <library name="sqlite-jdbc-3.25.2">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/sqlite-jdbc-3.25.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
